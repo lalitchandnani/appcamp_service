@@ -1,5 +1,5 @@
 """
-URL configuration for diet_planner project.
+URL configuration for appcamp project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from diet_api.views import get_diet_plan
+from appcamp_api.views import notify_request
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('get_diet_plan/', get_diet_plan, name='get_diet_plan'),
-]
+    path('notify_request/', notify_request, name='notify_request'),
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
